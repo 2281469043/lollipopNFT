@@ -1,7 +1,7 @@
 class Select {
   /**
-   * @param {HTMLSelectElement} select 主控件
-   * @param {Array<Option>} optionNodes 选项
+   * @param {HTMLSelectElement} select: Main Controls
+   * @param {Array<Option>} optionNodes
    */
   constructor(select, optionNodes, defaultSelectIndex) {
     this.el = document.createElement("button");

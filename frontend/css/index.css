@@ -1,7 +1,7 @@
-/* 通用样式 */
+/* General Style */
 @import "reset.css";
 
-/* 组件 */
+/* Component */
 @import "./components/header.css";
 @import "./components/gradient-button.css";
 @import "./components/trending-card.css";

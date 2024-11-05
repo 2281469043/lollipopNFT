@@ -1,7 +1,5 @@
-/* 通用样式 */
 @import "reset.css";
 
-/* 组件 */
 @import "./components/header.css";
 @import "./components/gradient-button.css";
 @import "./components/trending-card.css";
@@ -108,77 +106,3 @@
 }
 
 /* trending section end */
-
-/* leader board start */
-.ranking-featured {
-  background-color: #191919;
-  color: white;
-}
-
-.ranking-content {
-  display: grid;
-  grid-template-columns: repeat(5, 16rem);
-  justify-content: space-between;
-}
-
-.ranking-item p {
-  text-align: center;
-}
-
-.ranking-username {
-  padding: 2rem 0 1rem 0;
-}
-
-.ranking-property {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.ranking-property .eth-icon svg {
-  fill: white;
-}
-
-/* leader board end */
-
-/* modal start */
-.modal-content {
-  padding: 6rem 4rem;
-  border-radius: 1.4rem;
-  width: fit-content;
-  text-align: center;
-  position: relative;
-}
-
-.modal-close {
-  position: absolute;
-  height: 4rem;
-  width: 4rem;
-  right: 0;
-  top: 0;
-  transform: translateY(-100%);
-  background-color: transparent;
-  color: white;
-}
-
-.modal-close:hover {
-  color: black;
-}
-
-.wallet-text h2 {
-  margin-bottom: 1.2rem;
-  font-size: 2.8rem;
-}
-
-.wallet-cta {
-  margin-top: 5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 2.4rem;
-}
-
-.wallet-button {
-  height: 5rem;
-  width: 35rem;
-}
-/* modal end */

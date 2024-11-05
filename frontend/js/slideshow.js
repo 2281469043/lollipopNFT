@@ -1,13 +1,13 @@
 class Slideshow {
   /**
    *
-   * @param {Array<HTMLElement>} items 轮播元素
-   * @param {boolean} autoPlay  是否自动播放 默认否
-   * @param {number} speed  轮播速度 ms ,默认 2500 ms
+   * @param {Array<HTMLElement>} items: Carousel elements
+   * @param {boolean} autoPlay: Whether to play automatically Default No
+   * @param {number} speed: Carousel speed ms, default 2500 ms
    */
   constructor(items, autoPlay = false, speed = 2500) {
     /**
-     * @type {number} 当前轮播的索引
+     * @type {number} The index of the current carousel
      */
     this.current = 0;
     this.items = items;
@@ -19,21 +19,21 @@ class Slideshow {
       item.addEventListener("mouseleave", this.play.bind(this));
     });
     /**
-     * @type {number} 当前轮播的个数
+     * @type {number} The number of current carousels
      */
     this.length = items.length;
     /**
-     * @type {HTMLElement} 当前轮播的元素
+     * @type {HTMLElement} The element currently being rotated
      */
     this.currentEl = this.items[this.current];
 
     /**
-     * @type {HTMLElement} 上一个元素
+     * @type {HTMLElement} Previous element
      */
     this.prevEl = this.items[this.length - 1];
 
     /**
-     * @type {HTMLElement} 下一个元素
+     * @type {HTMLElement} Next element
      */
     this.nextEl = this.items[this.current + 1];
     this.next = this.next.bind(this);

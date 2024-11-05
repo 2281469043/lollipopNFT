@@ -1,17 +1,17 @@
 class Modal {
   /**
-   * @param {Array<HTMLElement> | HTMLElement} toggles 开关元素
-   * @param {HTMLElement} modal modal元素
-   * @param {HTMLElement | null} close 关闭按钮
+   * @param {Array<HTMLElement> | HTMLElement} toggles: toggle elements
+   * @param {HTMLElement} modal: modal element
+   * @param {HTMLElement | null} close: close button
    */
   constructor(toggles, modal, close) {
     /**
-     * modal 元素
+     * modal element
      * @type {HTMLElement}
      */
     this.el = modal;
     /**
-     * 当前开关状态， true为开， false为关
+     * present state of the modal, true for open, false for close
      * @type {boolean}
      */
     this.status = false;
@@ -34,7 +34,7 @@ class Modal {
     this.openModal();
   }
 
-  // 打开modal
+  // open modal
   openModal() {
     this.status = true;
     this.el.hidden = false;
@@ -42,7 +42,7 @@ class Modal {
     this.el.addEventListener("click", this.closeModal.bind(this));
   }
 
-  // 关闭modal
+  // close modal
   closeModal() {
     this.status = false;
     this.el.removeEventListener("click", this.closeModal.bind(this));

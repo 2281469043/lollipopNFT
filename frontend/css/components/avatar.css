@@ -9,11 +9,11 @@
   border-radius: 50%;
 }
 
-/* 当头像中含有其他标记性元素时为头像容器添加定位 */
+/* Add positioning to the avatar container when the avatar contains other iconic elements */
 .avatar.status {
   position: relative;
 }
-/* 头像标记性元素的定位 */
+/* Positioning of iconic elements of avatar */
 .avatar-status {
   position: absolute;
   display: block;
@@ -27,7 +27,7 @@
   transform: translate(20%, -20%);
   box-sizing: border-box;
 }
-/* 头像标记性元素的定位 */
+/* Positioning of iconic elements of avatar */
 .avatar-index {
   position: absolute;
   width: 2.6rem;

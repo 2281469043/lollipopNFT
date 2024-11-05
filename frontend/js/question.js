@@ -1,9 +1,9 @@
 class Question {
   /**
    *
-   * @param {HTMLElement} qs 问题元素
-   * @param {HTMLElement} answer 答案元素
-   * @param {boolean} showAnswer 是否展示答案
+   * @param {HTMLElement} qs: question element
+   * @param {HTMLElement} answer: answer element
+   * @param {boolean} showAnswer: show answer or not
    */
   constructor(qs, answer, showAnswer) {
     this.showAnswer = showAnswer;
