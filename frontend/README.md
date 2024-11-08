@@ -1,7 +1,3 @@
-Here's a polished version of your project's README.md:
-
----
-
 # LollipopNFT Project
 
 ## How to Run Our Website
