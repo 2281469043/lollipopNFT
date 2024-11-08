@@ -126,3 +126,60 @@
   font-weight: 600;
 }
 /* join us end */
+
+
+
+body,
+html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Header styling */
+header .container {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    background-color: #f4f4f9;
+}
+
+/* Section styling */
+.section {
+    padding: 2rem 0;
+}
+
+.section-about .about-item {
+    display: flex;
+    margin-bottom: 2rem;
+}
+
+.section-about .about-text {
+    flex: 1;
+}
+
+.section-about .about-image img {
+    width: 100%;
+    height: auto;
+}
+
+/* Team section styling */
+.team-content {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+}
+
+.team-item .avatar img {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+}
+
+/* Footer styling */
+footer {
+    padding: 2rem 0;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+}
