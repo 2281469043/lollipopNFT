@@ -4,7 +4,7 @@
 
 To run the LollipopNFT website locally, follow these steps:
 
-1. Download all the front-end and back-end files of the project.
+1. Clone lollipopNFT repo.
 2. Navigate to the project directory in your terminal.
 3. Install **http-server** globally (only needed the first time):
    ```bash
