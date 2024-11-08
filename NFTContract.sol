@@ -6,45 +6,45 @@ import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 contract MuseumNFTMarketplace is ERC721URIStorage {
 
     struct Museum {
-        bool isRegistered; // 博物馆是否已经注册
-        string name; // 博物馆名字
-        address payable walletAddress; // 博物馆的钱包地址
+        bool isRegistered; // Whether the museum is registered
+        string name; // Museum name
+        address payable walletAddress; // Museum's wallet address
     }
 
     struct NFTInfo {
-        uint256 tokenId; // NFT的唯一标识
-        string artworkName; // 作品的名字
-        string artworkNumber; // 作品编号
-        string museumName; // 博物馆名字
-        string certifier; // 博物馆认证人的姓名
-        uint256 price; // NFT价格
-        bool isListed; // 是否已经上架
+        uint256 tokenId; // Unique identifier for the NFT
+        string artworkName; // Name of the artwork
+        string artworkNumber; // Artwork identifier number
+        string museumName; // Name of the museum
+        string certifier; // Name of the museum certifier
+        uint256 price; // NFT price
+        bool isListed; // Whether the NFT is listed for sale
     }
 
-    mapping(address => Museum) private museums; // 存储博物馆信息
-    mapping(uint256 => NFTInfo) private nftDetails; // 存储NFT的详细信息
+    mapping(address => Museum) private museums; // Storage for museum information
+    mapping(uint256 => NFTInfo) private nftDetails; // Storage for detailed NFT information
 
-    uint256 private _nextTokenId = 1; // 下一个Token ID
-    uint256 public constant platformFeePercentage = 10; // 平台手续费百分比
-    address payable public platformOwner; // 平台所有者的地址
+    uint256 private _nextTokenId = 1; // Next Token ID
+    uint256 public constant platformFeePercentage = 10; // Platform fee percentage
+    address payable public platformOwner; // Platform owner's address
 
     event MuseumRegistered(address museumAddress, string museumName);
     event MuseumRemoved(address museumAddress, string museumName);
     event NFTCreated(uint256 indexed tokenId, address museumAddress, string artworkName, uint256 price);
     event NFTPurchased(uint256 indexed tokenId, address buyer, address museum, uint256 price);
 
-    // 构造函数，初始化合约，并将NFT的名字和符号传递给ERC721
+    // Constructor to initialize the contract and pass the NFT name and symbol to ERC721
     constructor() ERC721("MuseumNFT", "MNFT") {
-        platformOwner = payable(msg.sender); // 设置平台所有者
+        platformOwner = payable(msg.sender); // Set the platform owner
     }
 
-    // 只有管理员可以注册博物馆，管理员为合约部署者
+    // Only the platform owner can register museums, which is the contract deployer
     modifier onlyPlatformOwner() {
         require(msg.sender == platformOwner, "You are not the platform owner");
         _;
     }
 
-    // 注册博物馆
+    // Register a museum
     function registerMuseum(address museumAddress, string memory museumName) public onlyPlatformOwner {
         require(!museums[museumAddress].isRegistered, "Museum already registered");
         museums[museumAddress] = Museum({
@@ -55,7 +55,7 @@ contract MuseumNFTMarketplace is ERC721URIStorage {
         emit MuseumRegistered(museumAddress, museumName);
     }
 
-    // 移除博物馆
+    // Remove a museum
     function removeMuseum(address museumAddress) public onlyPlatformOwner {
         require(museums[museumAddress].isRegistered, "Museum is not registered");
         string memory museumName = museums[museumAddress].name;
@@ -63,7 +63,7 @@ contract MuseumNFTMarketplace is ERC721URIStorage {
         emit MuseumRemoved(museumAddress, museumName);
     }
 
-    // 博物馆生成NFT并上架出售
+    // Museum creates and lists an NFT for sale
     function createAndListNFT(
         string memory artworkName,
         string memory artworkNumber,
@@ -71,15 +71,15 @@ contract MuseumNFTMarketplace is ERC721URIStorage {
         uint256 price,
         string memory tokenURI
     ) public {
-        require(museums[msg.sender].isRegistered, "Museum is not registered"); // 只有注册的博物馆可以生成NFT
+        require(museums[msg.sender].isRegistered, "Museum is not registered"); // Only registered museums can create NFTs
 
-        uint256 tokenId = _nextTokenId++; // 获取当前Token ID并递增
+        uint256 tokenId = _nextTokenId++; // Get the current Token ID and increment it
 
-        // 使用作品的名字作为NFT的名字，将作品的名字嵌入到Token的metadata中
-        _mint(msg.sender, tokenId); // 为博物馆生成NFT
-        _setTokenURI(tokenId, tokenURI); // 设置NFT的Token URI（IPFS地址）
+        // Use the artwork's name as the NFT's name and embed the name in the token metadata
+        _mint(msg.sender, tokenId); // Mint the NFT for the museum
+        _setTokenURI(tokenId, tokenURI); // Set the NFT's Token URI (IPFS address)
 
-        // 将NFT的信息记录到nftDetails映射中
+        // Record the NFT's information in the nftDetails mapping
         nftDetails[tokenId] = NFTInfo({
             tokenId: tokenId,
             artworkName: artworkName,
@@ -90,42 +90,42 @@ contract MuseumNFTMarketplace is ERC721URIStorage {
             isListed: true
         });
 
-        emit NFTCreated(tokenId, msg.sender, artworkName, price); // 触发事件
+        emit NFTCreated(tokenId, msg.sender, artworkName, price); // Trigger event
     }
 
-    // 用户购买NFT
+    // User purchases an NFT
     function purchaseNFT(uint256 tokenId) public payable {
         NFTInfo storage nft = nftDetails[tokenId];
         require(nft.isListed, "NFT is not for sale");
         require(msg.value >= nft.price, "Insufficient funds");
 
         address payable museum = museums[ownerOf(tokenId)].walletAddress;
-        uint256 platformFee = (msg.value * platformFeePercentage) / 100; // 计算平台手续费
-        uint256 museumAmount = msg.value - platformFee; // 计算博物馆应得金额
+        uint256 platformFee = (msg.value * platformFeePercentage) / 100; // Calculate the platform fee
+        uint256 museumAmount = msg.value - platformFee; // Calculate the museum's earnings
 
-        // 平台收取10%的费用
+        // Platform takes a 10% fee
         platformOwner.transfer(platformFee);
-        // 博物馆收到90%的费用
+        // Museum receives 90% of the payment
         museum.transfer(museumAmount);
 
-        // 将NFT转移到买家手中
+        // Transfer the NFT to the buyer
         _transfer(ownerOf(tokenId), msg.sender, tokenId);
-        nft.isListed = false; // 将NFT标记为已出售
+        nft.isListed = false; // Mark the NFT as sold
 
-        emit NFTPurchased(tokenId, msg.sender, museum, nft.price); // 触发购买事件
+        emit NFTPurchased(tokenId, msg.sender, museum, nft.price); // Trigger purchase event
     }
 
-    // 获取NFT详情
+    // Get NFT details
     function getNFTDetails(uint256 tokenId) public view returns (NFTInfo memory) {
         return nftDetails[tokenId];
     }
 
-    // 验证某个地址是否为注册的博物馆
+    // Verify if an address is a registered museum
     function isMuseumRegistered(address museumAddress) public view returns (bool) {
         return museums[museumAddress].isRegistered;
     }
 
-    // 获取博物馆信息
+    // Get museum information
     function getMuseumInfo(address museumAddress) public view returns (Museum memory) {
         require(museums[museumAddress].isRegistered, "Museum is not registered");
         return museums[museumAddress];
