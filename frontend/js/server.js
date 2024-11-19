@@ -92,11 +92,19 @@ async function createAndListNFT(artworkName, artworkNumber, certifier, priceInEt
         const price = ethers.utils.parseEther(priceInEther); // Convert Ether to Wei
         const tx = await contract.createAndListNFT(artworkName, artworkNumber, certifier, price, tokenURI);
         console.log('Transaction sent:', tx);
+
+        // Extract and log the transaction hash
+        const transactionHash = tx.hash;
+        console.log('Transaction hash:', transactionHash);
+
+        // Wait for the transaction receipt
         const receipt = await tx.wait();
         console.log('NFT created and listed:', receipt);
-        alert("NFT created and listed successfully!");
+
+        // Display the transaction hash in an alert
+        alert(`NFT created and listed successfully!\nTransaction Hash: ${transactionHash}`);
     } catch (error) {
         console.error('Error creating and listing NFT:', error);
-        alert("NFT creation failed", error);
+        alert("NFT creation failed: " + error.message);
     }
 }
