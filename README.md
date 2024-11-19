@@ -75,5 +75,5 @@ The back-end code is handled in **NFTContract.sol** and includes the following f
 
 1. Connect your MetaMask account on **index.html**.
 2. Go to **create.html** to input the details of the NFT you wish to create, including the price.
-3. Click "Create NFT" to mint the NFT using a smart contract.
+3. Click "Create NFT" to create the NFT using a smart contract.
 4. View your published NFTs in both **explore.html** and **myCollect.html**.
