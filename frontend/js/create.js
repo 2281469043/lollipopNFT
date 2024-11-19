@@ -1,6 +1,15 @@
+// Import the server
+import { connectToWallet, initializeContract, createAndListNFT } from './server.js';
+
 // Select the upload button and add an event listener
 const uploadButton = document.getElementById('upload-button');
+const createButton = document.getElementById('create-button');
 const fileInput = document.getElementById('file');
+const artworkNameInput = document.getElementById('artwork-name');
+const artworkNumberInput = document.getElementById('artwork-number');
+const certifierInput = document.getElementById('certifier');
+const priceInput = document.getElementById('price');
+const tokenURIInput = document.getElementById('token-uri');
 
 // Function to handle file upload
 async function uploadToIPFS(file) {
@@ -33,7 +42,7 @@ async function uploadToIPFS(file) {
 // Event listener for button click
 uploadButton.addEventListener('click', async (event) => {
   event.preventDefault(); // Prevent default form submission
-  
+
   const file = fileInput.files[0];
   if (!file) {
     alert("Please select a file before uploading.");
@@ -102,4 +111,41 @@ uploadButton.addEventListener("click", async (event) => {
   }
 
   alert("NFT preview updated!");
+});
+
+// Event listener for the create button
+createButton.addEventListener("click", async (event) => {
+  event.preventDefault(); // Prevent default form submission
+
+  // Connect to the wallet and initialize the contract
+  await initializeContract();
+
+  // // Example data for creating and listing an NFT
+  // const artworkName = 'Starry Night';
+  // const artworkNumber = 'SN001';
+  // const certifier = 'Vincent van Gogh';
+  // const priceInEther = '1.0'; // Price in Ether
+  // const tokenURI = 'ipfs://Qm...'; // IPFS URI of the NFT metadata
+
+  // Get values from the input fields
+  const artworkName = artworkNameInput.value.trim();
+  const artworkNumber = artworkNumberInput.value.trim();
+  const certifier = certifierInput.value.trim();
+  const priceInEther = priceInput.value.trim();
+  const tokenURI = tokenURIInput.value.trim();
+
+  // Validation
+  if (!artworkName || !artworkNumber || !certifier || !priceInEther || !tokenURI) {
+    alert("Please fill in all the fields before creating an NFT.");
+    return;
+  }
+
+  // Check if the price is a valid decimal value
+  if (isNaN(priceInEther) || parseFloat(priceInEther) <= 0) {
+    alert("Please enter a valid decimal value for the price.");
+    return;
+  }
+
+  // Create and list the NFT
+  createAndListNFT(artworkName, artworkNumber, certifier, priceInEther, tokenURI);
 });

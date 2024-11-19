@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="./css/create.css" />
+    <!-- Include Ethers.js from jsDelivr CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js" type="application/javascript"></script>
     <title>Create NFT Page</title>
   </head>
   <body>
@@ -53,27 +55,27 @@
 
             <div class="form-item">
               <label for="">Name of your artwork</label>
-              <input type="text" />
+              <input type="text" id="artwork-name" />
             </div>
 
             <div class="form-item">
               <label for="">Your artwork number</label>
-              <input type="text" />
+              <input type="text" id="artwork-number" />
             </div>
 
             <div class="form-item">
               <label for="">Certifier name</label>
-              <input type="text" />
+              <input type="text" id="certifier" />
             </div>
 
             <div class="form-item">
               <label for="">Set price</label>
-              <input type="text" />
+              <input type="text" id="price" />
             </div>
 
             <div class="form-item">
               <label for="">Your NFT URL</label>
-              <input type="text" />
+              <input type="text" id="token-uri" />
             </div>
 
             <div class="form-item">
@@ -82,7 +84,7 @@
             </div>
 
             <div class="form-item">
-              <button class="gradient-button pink-button create-button">
+              <button id="create-button" class="gradient-button pink-button create-button">
                 Create NFT
               </button>
             </div>
