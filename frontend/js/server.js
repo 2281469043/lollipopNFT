@@ -13,7 +13,8 @@ export {
     initializeContract,
     registerMuseum,
     checkMuseumRegistration,
-    createAndListNFT
+    createAndListNFT,
+    purchaseNFT
 };
 
 // Function to get a specific cookie value
@@ -87,10 +88,9 @@ async function checkMuseumRegistration(museumAddress) {
     }
 }
 
-async function createAndListNFT(artworkName, artworkNumber, certifier, priceInEther, tokenURI) {
+async function createAndListNFT(artworkName, artworkNumber, certifier, priceInWei, tokenURI) {
     try {
-        const price = ethers.utils.parseEther(priceInEther); // Convert Ether to Wei
-        const tx = await contract.createAndListNFT(artworkName, artworkNumber, certifier, price, tokenURI);
+        const tx = await contract.createAndListNFT(artworkName, artworkNumber, certifier, priceInWei, tokenURI);
         console.log('Transaction sent:', tx);
 
         // Extract and log the transaction hash
@@ -106,5 +106,26 @@ async function createAndListNFT(artworkName, artworkNumber, certifier, priceInEt
     } catch (error) {
         console.error('Error creating and listing NFT:', error);
         alert("NFT creation failed: " + error.message);
+    }
+}
+
+async function purchaseNFT(tokenId,priceInWei) {
+    try {
+        const tx = await contract.purchaseNFT(tokenId, { value: priceInWei });
+        console.log('Transaction sent:', tx);
+
+        // Extract and log the transaction hash
+        const transactionHash = tx.hash;
+        console.log('Transaction hash:', transactionHash);
+
+        // Wait for the transaction receipt
+        const receipt = await tx.wait();
+        console.log('NFT Perchased!!!:', receipt);
+
+        // Display the transaction hash in an alert
+        alert(`NFT Perchased Successfully!\nTransaction Hash: ${transactionHash}`);
+    } catch (error) {
+        console.error('Error purchase NFT:', error);
+        alert("NFT purchase failed: " + error.message);
     }
 }

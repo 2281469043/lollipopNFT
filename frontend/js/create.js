@@ -124,21 +124,21 @@ createButton.addEventListener("click", async (event) => {
   const artworkName = artworkNameInput.value.trim();
   const artworkNumber = artworkNumberInput.value.trim();
   const certifier = certifierInput.value.trim();
-  const priceInEther = priceInput.value.trim();
+  const priceInWei = priceInput.value.trim();
   const tokenURI = tokenURIInput.value.trim();
 
   // Validation
-  if (!artworkName || !artworkNumber || !certifier || !priceInEther || !tokenURI) {
+  if (!artworkName || !artworkNumber || !certifier || !priceInWei || !tokenURI) {
     alert("Please fill in all the fields before creating an NFT.");
     return;
   }
 
   // Check if the price is a valid decimal value
-  if (isNaN(priceInEther) || parseFloat(priceInEther) <= 0) {
+  if (isNaN(priceInWei) || parseFloat(priceInWei) <= 0) {
     alert("Please enter a valid decimal value for the price.");
     return;
   }
 
   // Create and list the NFT
-  createAndListNFT(artworkName, artworkNumber, certifier, priceInEther, tokenURI);
+  createAndListNFT(artworkName, artworkNumber, certifier, priceInWei, tokenURI);
 });
