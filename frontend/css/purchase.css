@@ -1,0 +1,46 @@
+@import "./reset.css";
+
+@import "./components/header.css";
+@import "./components/footer.css";
+@import "./components/section.css";
+@import "./components/gradient-button.css";
+@import "./components/avatar.css";
+
+.purchase-container {
+  padding: 8rem 0;
+  width: 100rem;
+}
+
+.purchase-container h2 {
+  font-size: 4.2rem;
+  text-align: center;
+}
+
+.purchase {
+  margin-top: 8rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12rem;
+}
+
+.purchase-form {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.form-item label {
+  display: block;
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+.form-item input {
+  width: 100%;
+  border-radius: 0.8rem;
+}
+
+.purchase-button {
+  height: 5rem;
+}

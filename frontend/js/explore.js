@@ -7,17 +7,17 @@ new Slideshow(Array.from(slideItems), true, 2500);
 
 const select = document.getElementById("explore-select");
 const options = select.querySelectorAll("option");
-function clickPostTimeSort() {
-  console.log("按发射时间排序");
-}
+// function clickPostTimeSort() {
+//   console.log("sort by post time");
+// }
 
-function clickMostPopularSort() {
-  console.log("按最受欢迎排序");
-}
+// function clickMostPopularSort() {
+//   console.log("sort by most popular");
+// }
 
-function clickPriceSort() {
-  console.log("按价格排序");
-}
+// function clickPriceSort() {
+//   console.log("sort by price");
+// }
 const postTimeSortOption = new Option(options[0], clickPostTimeSort);
 const mostPopularSortOption = new Option(options[1], clickMostPopularSort);
 const priceSortOption = new Option(options[2], clickPriceSort);
