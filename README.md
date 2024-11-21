@@ -45,10 +45,10 @@ However, the project also faces challenges, such as:
 Our website’s front-end is built with **HTML**, **CSS**, and **JavaScript**, hosted on an **HTTP server**. Each page has a corresponding JavaScript and CSS file. Below are the main HTML pages and their functions:
 
 1. **index.html** - The homepage where users connect their MetaMask accounts.
-2. **explore.html** - A marketplace where users can browse all NFTs published by museums and make purchases.
-3. **detail*.html** - Each page represents a unique NFT with details about the museum, price, and other relevant information. Each page includes a "Buy NFT" button that triggers a smart contract in the back-end to facilitate the purchase.
-4. **myCollect.html** - Displays NFTs owned by the user, allowing them to view their collection. Museums can also view the NFTs they’ve published.
-5. **detailmc*.html** - These pages contain details about specific NFTs and are accessible through the user's "myCollect" page.
+2. **explore.html** - A marketplace where users can browse all NFTs published by museums.
+3. **detail.html** - Displays detailed information about a specific NFT, such as the museum, description, and other relevant details. This page is only for viewing.
+4. **purchase.html** - Allows users to purchase NFTs by searching for specific NFTs using their labels.
+5. **myCollect.html** - Displays NFTs owned by the user, allowing them to view their collection. Museums can also view the NFTs they’ve published.
 6. **create.html** - Authorized museum users can create new NFTs by entering details and setting a price. Clicking the "Create NFT" button initiates the back-end smart contract to mint the NFT.
 7. **about.html** - Contains general information about the platform and introduces the project team.
 8. **faq.html** - Provides answers to common blockchain-related questions.
@@ -65,11 +65,11 @@ The back-end code is handled in **NFTContract.sol** and includes the following f
 
 ### For Regular Users
 
-1. Connect your MetaMask account on **index.html**.
-2. Browse NFTs in **explore.html**.
-3. To purchase an NFT, click on the desired item to view more details on the **detail*.html** page.
-4. Click the "Buy NFT" button to initiate the transaction.
-5. View your purchased NFTs in **myCollect.html**.
+1. Connect your MetaMask account on **index.html**.  
+2. Browse NFTs in **explore.html**.  
+3. To view details of a specific NFT, click on the desired item in **explore.html**, which will redirect you to the **detail.html** page. The **detail.html** page is for only viewing detailed information about the NFT.
+4. To purchase an NFT, navigate to the **purchase.html** page. On this page, you can search for and buy NFTs by their labels.  
+5. View your purchased NFTs in **myCollect.html**.  
 
 ### For Authorized Museum Users
 

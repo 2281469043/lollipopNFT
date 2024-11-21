@@ -44,31 +44,32 @@ class Slideshow {
     autoPlay && this.play();
   }
 
+  // Play the carousel
   play() {
     this.loopTimer = setInterval(this.next, this.speed);
   }
-
+  // Stop the carousel
   stop() {
     clearInterval(this.loopTimer);
   }
-
+  // Style the carousel
   styleElement() {
     this.currentEl.classList.add("current");
     this.prevEl.classList.add("prev");
     this.nextEl.classList.add("next");
     this.addListener();
   }
-
+  // Add event listener
   addListener() {
     this.prevEl.addEventListener("click", this.prev, true);
     this.nextEl.addEventListener("click", this.next, true);
   }
-
+  // Remove event listener
   removeListener() {
     this.prevEl.removeEventListener("click", this.prev, true);
     this.nextEl.removeEventListener("click", this.next, true);
   }
-
+  // Next carousel, remove the current carousel, add the next carousel
   next() {
     this.removeListener();
     this.currentEl.classList.replace("current", "prev");
@@ -91,7 +92,7 @@ class Slideshow {
 
     this.addListener();
   }
-
+  // Previous carousel, remove the current carousel, add the previous carousel
   prev() {
     this.removeListener();
     this.nextEl.classList.remove("next");

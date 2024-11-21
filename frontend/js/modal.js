@@ -29,6 +29,7 @@ class Modal {
     }
   }
 
+  // toggle modal
   toggleModal() {
     if (this.status) return this.closeModal();
     this.openModal();

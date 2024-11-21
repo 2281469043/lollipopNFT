@@ -120,13 +120,6 @@ createButton.addEventListener("click", async (event) => {
   // Connect to the wallet and initialize the contract
   await initializeContract();
 
-  // // Example data for creating and listing an NFT
-  // const artworkName = 'Starry Night';
-  // const artworkNumber = 'SN001';
-  // const certifier = 'Vincent van Gogh';
-  // const priceInEther = '1.0'; // Price in Ether
-  // const tokenURI = 'ipfs://Qm...'; // IPFS URI of the NFT metadata
-
   // Get values from the input fields
   const artworkName = artworkNameInput.value.trim();
   const artworkNumber = artworkNumberInput.value.trim();
