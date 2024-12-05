@@ -81,11 +81,11 @@ With these steps completed, you're ready to use the LollipopNFT platform!
 
 ### For Regular Users
 
-1. Connect your MetaMask account on **index.html**.
-2. Browse NFTs in **explore.html**.
-3. To purchase an NFT, click on the desired item to view more details on the **detail*.html** page.
-4. Click the "Buy NFT" button to initiate the transaction.
-5. View your purchased NFTs in **myCollect.html**.
+1. Connect your MetaMask account on **index.html**.  
+2. Browse NFTs in **explore.html**.  
+3. To view details of a specific NFT, click on the desired item in **explore.html**, which will redirect you to the **detail.html** page. The **detail.html** page is for only viewing detailed information about the NFT.
+4. To purchase an NFT, navigate to the **purchase.html** page. On this page, you can search for and buy NFTs by their labels.  
+5. View your purchased NFTs in **myCollect.html**.  
 
 ### For Authorized Museum Users
 
